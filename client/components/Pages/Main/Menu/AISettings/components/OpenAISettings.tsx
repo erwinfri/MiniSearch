@@ -36,6 +36,11 @@ export const OpenAISettings = ({
       type="password"
       description="Optional, as local API servers usually do not require it."
     />
+    <TextInput
+      {...form.getInputProps("guardiumaiEndpointId")}
+      label="GuardiumAI Endpoint ID"
+      description=" local API servers usually do not require it."
+    />
     {useTextInput ? (
       <TextInput
         {...form.getInputProps("openAiApiModel")}

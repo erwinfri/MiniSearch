@@ -11,22 +11,23 @@ export function selectRandomModel(
   return availableModels[randomIndex].id;
 }
 
-function makeOpenAIHeaders(apiKey?: string): Record<string, string> {
+function makeOpenAIHeaders(apiKey?: string, guardiumaiEndpointId?: string): Record<string, string> {
   return {
     ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
-    "Content-Type": "application/json",
+    "Content-Type": "application/json", "x-alltrue-llm-endpoint-identifier": guardiumaiEndpointId || "",
   };
 }
 
 export async function listOpenAiCompatibleModels(
   baseUrl: string,
   apiKey?: string,
+  guardiumaiEndpointId?: string,
 ): Promise<OpenAIModel[]> {
   if (!baseUrl) throw new Error("Base URL is required to list models");
 
   const normalizedBase = baseUrl.replace(/\/$/, "");
   const response = await fetch(`${normalizedBase}/models`, {
-    headers: makeOpenAIHeaders(apiKey),
+    headers: makeOpenAIHeaders(apiKey,guardiumaiEndpointId),
   });
 
   if (!response.ok) {

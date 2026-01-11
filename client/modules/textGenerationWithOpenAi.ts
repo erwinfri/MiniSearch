@@ -41,6 +41,7 @@ async function createOpenAiStream({
     name: settings.openAiApiBaseUrl,
     baseURL: settings.openAiApiBaseUrl,
     apiKey: settings.openAiApiKey,
+    endPointId: settings.guardiumaiEndpointId,
   });
 
   const params = getDefaultChatCompletionCreateParamsStreaming();
