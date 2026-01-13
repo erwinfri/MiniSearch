@@ -16,7 +16,6 @@ export const useOpenAiModels = (settings: Settings) => {
         const models = await listOpenAiCompatibleModels(
           settings.openAiApiBaseUrl,
           settings.openAiApiKey,
-          settings.guardiumaiEndpointId,
         );
         const uniqueModelIds = [
           ...new Set(models.map((m: { id: string }) => m.id)),

@@ -66,6 +66,7 @@ async function processStreamResponse(
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-alltrue-llm-endpoint-identifier": "EHF-OPENAI-API-LLM",
     },
     body: JSON.stringify({
       ...getDefaultChatCompletionCreateParamsStreaming(),
