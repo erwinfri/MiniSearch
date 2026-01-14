@@ -107,6 +107,7 @@ export default function AISettingsForm() {
               form={form}
               openAiModels={openAiModels}
               useTextInput={useTextInput}
+              guardiumaiEndpointId={settings.guardiumaiEndpointId}
             />
           )}
 

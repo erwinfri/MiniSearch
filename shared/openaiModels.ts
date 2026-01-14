@@ -11,17 +11,34 @@ export function selectRandomModel(
   return availableModels[randomIndex].id;
 }
 
-function makeOpenAIHeaders(apiKey?: string): Record<string, string> {
+/*function makeOpenAIHeaders(apiKey?: string): Record<string, string> {
   return {
     ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
     "Content-Type": "application/json",
     "x-alltrue-llm-endpoint-identifier": "EHF-OPENAI-API-LLM",
   };
-}
+}*/
+
+function makeOpenAIHeaders(apiKey?: string): Record<string, string> {
+  const headers: Record<string, string> = {
+    'Authorization': 'Bearer ${apiKey}',
+    'Content-Type': 'application/json',
+    'User-Agent': 'EHF Minimum Viable Product',
+    'x-alltrue-llm-endpoint-identifier': 'EHF-OPENAI-API-LLM'
+  };
+
+  /*if (apiKey) {
+    'Authorization': 'Bearer ${apiKey}',
+    'Content-Type': 'application/json',
+    'x-alltrue-llm-endpoint-identifier': 'EHF-OPENAI-API-LLM'
+  }*/
+  return headers;
+}   
 
 export async function listOpenAiCompatibleModels(
   baseUrl: string,
   apiKey?: string,
+  //guardiumaiEndpointId?: string,
 ): Promise<OpenAIModel[]> {
   if (!baseUrl) throw new Error("Base URL is required to list models");
 
@@ -30,7 +47,7 @@ export async function listOpenAiCompatibleModels(
   const response = await fetch(`${normalizedBase}/models`, {
     headers: {
       ...makeOpenAIHeaders(apiKey),
-      "x-alltrue-llm-endpoint-identifier": "EHF-OPENAI-API-LLM",
+      Accept: "application/json",
     },
   });
 

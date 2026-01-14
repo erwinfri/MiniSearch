@@ -78,7 +78,7 @@ export function setResponseHeadersIfNotSet(
 
   for (const [key, value] of Object.entries(headers)) {
     if (value !== undefined && !response.getHeader(key)) {
-      response.setHeader(key, value);
+    response.setHeader(key, value);
     }
   }
 }

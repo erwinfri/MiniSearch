@@ -55,6 +55,7 @@ export function searchEndpointServerHook<
     if (!query) {
       response.statusCode = 400;
       response.setHeader("Content-Type", "application/json");
+      response.ap
       response.end(JSON.stringify({ error: "Missing query parameter" }));
       return;
     }

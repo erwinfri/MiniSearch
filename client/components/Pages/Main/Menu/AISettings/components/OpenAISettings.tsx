@@ -46,6 +46,7 @@ export const OpenAISettings = ({
         {...form.getInputProps("openAiApiModel")}
         label="API Model"
         description="Enter the model identifier"
+        
       />
     ) : (
       <Select
