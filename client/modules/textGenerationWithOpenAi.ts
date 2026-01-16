@@ -41,6 +41,11 @@ async function createOpenAiStream({
     name: settings.openAiApiBaseUrl,
     baseURL: settings.openAiApiBaseUrl,
     apiKey: settings.openAiApiKey,
+    headers: {//'x-alltrue-llm-endpoint-identifier': 'EHF-OPENAI-API-LLM',
+              'user-session-user-email': 'erwin.friethoff@nl.ibm.com',
+              'x-alltrue-llm-endpoint-identifier': settings.guardiumaiEndpointId,
+              
+    },
   });
 
   const params = getDefaultChatCompletionCreateParamsStreaming();

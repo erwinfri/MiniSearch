@@ -30,7 +30,7 @@ Below are the search results fetched at {{currentDate}}.
   inferencePresencePenalty: 0,
   openAiApiBaseUrl: "https://api.42072582.demos.ibm-ai-security.com/openai/v1",
   openAiApiKey: "",
-  openAiApiModel: "gpt4o",
+  openAiApiModel: "gpt-4o",
   guardiumaiEndpointId: "x-alltrue-llm-endpoint-identifier: EHF-OPENAI-API-LLM",
   openAiContextLength: 4096,
   hordeApiKey: "0000000000",
