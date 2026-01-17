@@ -1,9 +1,0 @@
-name: On Pull Request To Main
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches: ["main"]
-jobs:
-  test-lint-ping:
-    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-test-lint-ping') }}
-    uses: ./.github/workflows/reusable-test-lint-ping.yml
