@@ -46,7 +46,7 @@ export const SystemPromptInput = ({ form }: SystemPromptInputProps) => {
                   <em>"answer in a friendly tone"</em>
                 </li>
                 <li>
-                  <em>"write your response in Spanish"</em>
+                  <em>"write your response in English"</em>
                 </li>
               </ul>
             </li>

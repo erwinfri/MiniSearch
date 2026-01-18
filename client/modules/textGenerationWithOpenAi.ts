@@ -25,6 +25,7 @@ let currentAbortController: AbortController | null = null;
 interface StreamOptions {
   messages: ChatMessage[];
   onUpdate: (text: string, reasoningContent?: string) => void;
+  stream: "false";
 }
 
 interface StreamResult {
@@ -35,14 +36,16 @@ interface StreamResult {
 async function createOpenAiStream({
   messages,
   onUpdate,
+  
 }: StreamOptions): Promise<StreamResult> {
   const settings = getSettings();
   const openaiProvider = createOpenAICompatible({
     name: settings.openAiApiBaseUrl,
     baseURL: settings.openAiApiBaseUrl,
     apiKey: settings.openAiApiKey,
+    
     headers: {//'x-alltrue-llm-endpoint-identifier': 'EHF-OPENAI-API-LLM',
-              'user-session-user-email': 'erwin.friethoff@nl.ibm.com',
+              'x-alltrue-llm-firewall-user-session': '{"user-session-user-email": "erwin.friethoff@nl.ibm.com"}',
               'x-alltrue-llm-endpoint-identifier': settings.guardiumaiEndpointId,
               
     },
@@ -58,6 +61,7 @@ async function createOpenAiStream({
       availableModels = await listOpenAiCompatibleModels(
         settings.openAiApiBaseUrl,
         settings.openAiApiKey,
+        
       );
       const selectedModel = selectRandomModel(availableModels);
       if (selectedModel) effectiveModel = selectedModel;
@@ -99,6 +103,7 @@ async function createOpenAiStream({
         presencePenalty: params.presence_penalty,
         abortSignal: currentAbortController.signal,
         maxRetries: 0,
+        stream: "false",
         onError: async (error: unknown) => {
           if (
             getTextGenerationState() === "interrupted" ||
@@ -175,6 +180,7 @@ export async function generateTextWithOpenAi() {
 
   await createOpenAiStream({
     messages,
+    stream: "false",
     onUpdate: (text, reasoningContent) => {
       if (getTextGenerationState() !== "generating") {
         updateTextGenerationState("generating");
@@ -202,6 +208,7 @@ export async function generateChatWithOpenAi(
   const settings = getSettings();
   const result = await createOpenAiStream({
     messages,
+    stream: "false",
     onUpdate: (text, reasoningContent) => {
       if (reasoningContent && reasoningContent.length > 0) {
         if (text && text.length > 0) {

@@ -18,10 +18,10 @@ export function crossOriginServerHook<T extends ViteDevServer | PreviewServer>(
         key: "Cross-Origin-Resource-Policy",
         value: "cross-origin",
       },
-      {
+     /*{
         key: "x-alltrue-llm-endpoint-identifier",
         value: "EHF-OPENAI-API-LLM",
-      },
+      },*/
     ];
 
     for (const { key, value } of crossOriginIsolationHeaders) {

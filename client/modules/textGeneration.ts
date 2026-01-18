@@ -92,7 +92,7 @@ async function createLlmSummary(
     `New messages to fold in:\n${droppedText || "(none)"}`,
   ].join("\n\n");
 
-  const chat: ChatMessage[] = [{ role: "user", content: prompt }];
+  const chat: ChatMessage[] = [{ role: "user", content: prompt, stream: "false" }];
 
   const settings = getSettings();
   try {
@@ -277,8 +277,9 @@ export async function generateChatResponse(
     let systemPrompt: ChatMessage = {
       role: "user",
       content: systemPromptContent,
+      stream: "false",
     };
-    const initialResponse: ChatMessage = { role: "assistant", content: "Ok!" };
+    const initialResponse: ChatMessage = { role: "assistant", content: "Ok!", stream: "false" };
     const systemPromptTokens = gptTokenizer.encode(systemPrompt.content).length;
     const initialResponseTokens = gptTokenizer.encode(
       initialResponse.content,
@@ -324,7 +325,7 @@ export async function generateChatResponse(
       if (updatedSummary) {
         updatedSystemPromptContent += `\n\nConversation context:\n${updatedSummary}`;
       }
-      systemPrompt = { role: "user", content: updatedSystemPromptContent };
+      systemPrompt = { role: "user", content: updatedSystemPromptContent, stream: "false"};
     }
 
     const lastMessages = [systemPrompt, initialResponse, ...processedMessages];

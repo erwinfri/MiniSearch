@@ -1,6 +1,7 @@
 export type ChatMessage = {
   role: "system" | "user" | "assistant";
   content: string;
+  stream: string;
 };
 export type TextSearchResult = [title: string, snippet: string, url: string];
 export type ImageSearchResult = [

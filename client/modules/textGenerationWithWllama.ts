@@ -37,11 +37,12 @@ export async function generateTextWithWllama(): Promise<void> {
       {
         role: "user",
         content: getSystemPrompt(
-          getFormattedSearchResults(modelConfig.shouldIncludeUrlsOnPrompt),
+          getFormattedSearchResults(modelConfig.shouldIncludeUrlsOnPrompt),     
         ),
+        stream: "false",
       },
-      { role: "assistant", content: "Ok!" },
-      { role: "user", content: getQuery() },
+      { role: "assistant", content: "Ok!", stream: "false" },
+      { role: "user", content: getQuery(), stream: "false" },
     ];
     const response = await generateWithWllama({
       messages,

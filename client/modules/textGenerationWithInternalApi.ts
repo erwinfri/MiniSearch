@@ -22,9 +22,10 @@ export async function generateTextWithInternalApi() {
     {
       role: "user",
       content: getSystemPrompt(getFormattedSearchResults(true)),
+      stream: "false",
     },
-    { role: "assistant", content: "Ok!" },
-    { role: "user", content: getQuery() },
+    { role: "assistant", content: "Ok!", stream: "false" },
+    { role: "user", content: getQuery(), stream: "false" },
   ];
 
   const streamedMessage = await processStreamResponse(messages, (message) => {

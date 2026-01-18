@@ -9,6 +9,7 @@ export interface ModelConfig {
   topP: number;
   frequencyPenalty: number;
   presencePenalty: number;
+  stream: string;
 }
 
 export const modelConfig: ModelConfig = {
@@ -22,6 +23,7 @@ export const modelConfig: ModelConfig = {
   topP: 0.9,
   frequencyPenalty: 0.0,
   presencePenalty: 0.0,
+  stream: "false",
 };
 
 /**

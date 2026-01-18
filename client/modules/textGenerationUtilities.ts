@@ -45,7 +45,8 @@ export async function canStartResponding() {
 export function getDefaultChatCompletionCreateParamsStreaming() {
   const settings = getSettings();
   return {
-    stream: true,
+    // disable streaming for Guardium AI
+    stream: false,
     max_tokens: settings.openAiContextLength ?? defaultContextSize,
     temperature: settings.inferenceTemperature,
     top_p: settings.inferenceTopP,
@@ -96,8 +97,9 @@ export function getDefaultChatMessages(searchResults: string): ChatMessage[] {
     {
       role: "user",
       content: getSystemPrompt(searchResults),
+      stream: "false",
     },
-    { role: "assistant", content: "Ok!" },
-    { role: "user", content: getQuery() },
+    { role: "assistant", content: "Ok!", stream: "false" },
+    { role: "user", content: getQuery(), stream: "false" },
   ];
 }

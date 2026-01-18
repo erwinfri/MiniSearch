@@ -251,6 +251,7 @@ export function internalApiEndpointServerHook<
               presencePenalty: requestBody.presence_penalty,
               maxOutputTokens: requestBody.max_tokens,
               maxRetries: 0,
+              stream: "false",
             });
 
             for await (const part of stream.fullStream) {

@@ -72,7 +72,9 @@ ${
 }
 
 Respond with just the question, no additional text or explanations.`,
+stream: "false",
       },
+    
     ];
 
     const response = await generateChatResponse(promptMessages, () => {});

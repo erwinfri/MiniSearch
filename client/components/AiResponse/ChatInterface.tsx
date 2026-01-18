@@ -57,8 +57,8 @@ export default function ChatInterface({
     initialQuery &&
     initialResponse
       ? [
-          { role: "user" as const, content: initialQuery },
-          { role: "assistant" as const, content: initialResponse },
+          { role: "user" as const, content: initialQuery, stream: "false" },
+          { role: "assistant" as const, content: initialResponse, stream: "false" },
           ...initialMessages,
         ]
       : initialMessages || [];
@@ -144,8 +144,8 @@ export default function ChatInterface({
       initialQuery &&
       initialResponse
         ? [
-            { role: "user" as const, content: initialQuery },
-            { role: "assistant" as const, content: initialResponse },
+            { role: "user" as const, content: initialQuery, stream: "false" },
+            { role: "assistant" as const, content: initialResponse, stream: "false" },
             ...initialMessages,
           ]
         : initialMessages || [];
@@ -154,8 +154,8 @@ export default function ChatInterface({
       setMessages(newInitialMessagesArray);
     } else if (initialQuery && initialResponse) {
       setMessages([
-        { role: "user", content: initialQuery },
-        { role: "assistant", content: initialResponse },
+        { role: "user", content: initialQuery, stream: "false" },
+        { role: "assistant", content: initialResponse, stream: "false" },
       ]);
     }
   }, [initialQuery, initialResponse, initialMessages]);
@@ -233,7 +233,7 @@ export default function ChatInterface({
 
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: finalResponse },
+        { role: "assistant", content: finalResponse, stream: "false" },
       ]);
 
       addLogEntry("AI response re-generated");
@@ -261,7 +261,7 @@ export default function ChatInterface({
       if (currentInput.trim() === "" || generationState.isGeneratingResponse)
         return;
 
-      const userMessage: ChatMessage = { role: "user", content: currentInput };
+      const userMessage: ChatMessage = { role: "user", content: currentInput, stream: "false" };
       const newMessages: ChatMessage[] = [...messages, userMessage];
 
       setMessages(newMessages);
@@ -368,7 +368,7 @@ export default function ChatInterface({
 
         setMessages((prevMessages) => [
           ...prevMessages,
-          { role: "assistant", content: finalResponse },
+          { role: "assistant", content: finalResponse, stream: "false" },
         ]);
 
         addLogEntry("AI response completed");
@@ -385,6 +385,7 @@ export default function ChatInterface({
             role: "assistant",
             content:
               "Sorry, I encountered an error while generating a response.",
+            stream: "false",
           },
         ]);
       } finally {
@@ -426,7 +427,7 @@ export default function ChatInterface({
         <MessageList
           messages={
             generationState.isGeneratingResponse
-              ? [...messages, { role: "assistant", content: streamedResponse }]
+              ? [...messages, { role: "assistant", content: streamedResponse, stream: "false" }]
               : messages
           }
           onEditMessage={handleEditMessage}

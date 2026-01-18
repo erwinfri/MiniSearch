@@ -23,8 +23,9 @@ function makeOpenAIHeaders(apiKey?: string): Record<string, string> {
   const headers: Record<string, string> = {
     'Authorization': 'Bearer ${apiKey}',
     'Content-Type': 'application/json',
-    'User-Agent': 'EHF Minimum Viable Product',
+    //*'User-Agent': 'EHF Minimum Viable Product',
     'x-alltrue-llm-endpoint-identifier': 'EHF-OPENAI-API-LLM'
+    
   };
 
   /*if (apiKey) {

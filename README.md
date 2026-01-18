@@ -1,3 +1,5 @@
+This project is a fork of https://github.com/felladrin/MiniSearch/ adapted to be used as example application by IBM Guardium presales
+
 # MiniSearch
 
 A minimalist web-searching app with an AI assistant that runs directly from your browser.
