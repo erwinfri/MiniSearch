@@ -1,0 +1,2 @@
+{"id":"ef6d8e32-fcb4-4482-b844-aa6e853b121b","ts":"2026-01-22T19:35:39.078Z","path":"/Users/erwin/Documents/Projecten/Github_repos/personal_dev/MiniSearch/client/modules/textGenerationWithOpenAi.ts","version":"1.0.0","taskID":"3cafe805-a6f6-4142-8a94-9897ae54fdb0"}
+{"id":"4d2b7822-0038-437b-82bc-56c4dc720c0f","ts":"2026-01-22T19:36:15.903Z","path":"/Users/erwin/Documents/Projecten/Github_repos/personal_dev/MiniSearch/non-streaming.md","version":"1.0.0","taskID":"3cafe805-a6f6-4142-8a94-9897ae54fdb0"}

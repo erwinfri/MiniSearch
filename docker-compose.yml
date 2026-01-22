@@ -1,0 +1,19 @@
+services:
+  development-server:
+    environment:
+      - HOST=${HOST:-0.0.0.0}
+      - PORT=${PORT:-7860}
+      - BASIC_SSL=${BASIC_SSL:-false}
+      - HMR_PORT=${HMR_PORT:-7861}
+    ports:
+      - "${PORT:-7860}:7860"
+      - "${HMR_PORT:-7861}:7861"
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - .:/home/node/app/
+    command:
+      [
+        "(cd /usr/local/searxng/searxng-src && /usr/local/searxng/searxng-venv/bin/python -m searx.webapp > /tmp/searxng.log 2>&1) & (npm install && npm run dev)",
+      ]
