@@ -11,6 +11,7 @@ import { compressionServerHook } from "./server/compressionServerHook";
 import { crossOriginServerHook } from "./server/crossOriginServerHook";
 import { internalApiEndpointServerHook } from "./server/internalApiEndpointServerHook";
 import { rerankerServiceHook } from "./server/rerankerServiceHook";
+import { requestLoggingServerHook } from "./server/requestLoggingServerHook";
 import { searchEndpointServerHook } from "./server/searchEndpointServerHook";
 import { getSearchToken, regenerateSearchToken } from "./server/searchToken";
 import { statusEndpointServerHook } from "./server/statusEndpointServerHook";
@@ -83,6 +84,11 @@ export default defineConfig(({ command }) => {
     plugins: [
       process.env.BASIC_SSL === "true" ? viteBasicSSLPlugin() : undefined,
       viteReactPlugin(),
+      {
+        name: "configure-server-request-logging",
+        configureServer: requestLoggingServerHook,
+        configurePreviewServer: requestLoggingServerHook,
+      },
       {
         name: "configure-server-compression",
         configureServer: compressionServerHook,
