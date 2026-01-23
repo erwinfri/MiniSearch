@@ -8,3 +8,4 @@ node_modules
 /.githubold
 /.bobignore
 /.bobmodes
+.bob/mcp.json
